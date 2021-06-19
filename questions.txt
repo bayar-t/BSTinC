@@ -1,0 +1,63 @@
+//Name:Sergelenbayar Tsogtbaatar
+//Date:January 21, 2017
+//Overview: contains answers to questions.
+//Assignment Number: 1
+
+Q1)The file that are created are: BSTInt.o, BSTNodeInt.o, bst and testBST.o
+Q2)
+error 1)
+BSTInt.cpp:25:8: error: use of undeclared identifier 'root'
+  if (!root) {
+This causes an error because it can't access 'root'.
+
+error 2)
+BSTInt.cpp:26:5: error: use of undeclared identifier 'root'
+    root = new BSTNodeInt(item);
+This causes the same error as above where it can't access 'root' from BSTInt
+
+error 3)
+BSTInt.cpp:27:7: error: use of undeclared identifier 'isize'
+    ++isize;
+This causes an error because it can't access any objects from BSTInt
+
+error 4)
+BSTInt.cpp:31:22: error: use of undeclared identifier 'root'
+  BSTNodeInt* curr = root;
+This causes an error because it tries to assign something that isn't
+reachable to a pointer to a node.
+
+error 5)
+BSTInt.cpp:56:5: error: use of undeclared identifier 'isize'
+  ++isize;
+This causes an error because it tries to iterate something that isn't
+accessible.
+
+Q3)The bug was in function insert where it says '&&'. The function would replace a pointer to
+an already existing node if the node did not have a left and right child.
+So if a parent only had a left child and I tried to insert something that was
+less than the parent, then the already existing left child would be overwritten
+by the new one.
+
+
+Q4)The process which I found the bug was I refreshed on what a Binary search
+tree was and how it worked. Then I played around with the BST tester using 3
+different sets of: 0, 1, and 5. I noticed while playing around with the tester
+that sometimes a node would be lost as said in Q3 and I managed to recreate the
+bug with different data sets to fix it.
+
+Q5)The BSTInt.h passes by value while the BST.hpp passes by reference. The
+difference between the two is that when we pass by value, we get a copy of the
+value which we can change. While if we pass by reference, we can change the
+original argument from within the scope of the function.
+
+Q6)The sorted one produced taller trees.
+
+Q7)For an input of N into a BST, the sorted input should give a height of N. The
+height we expect from a random input should give a height of log(N). I reason
+this because if it is sorted, then it would just continiously insert into the
+right child. Wherehas the random input would give a more balanced tree because
+it is random. To test this, I used the actors.txt and actors_sorted.txt and for
+the actors.txt The expected height of random input is Log(11794) which equals
+13.5, and the actual height was 32 which is in range. The expected height of
+sorted input was 11794, but we got 11793 because we don't count root as part of
+the height. 
